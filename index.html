@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="userSearchPrompt">
+    <div>
+        <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
+        <input name="searchLocation" id="searchLocationInitial" type="text">
+        <h2 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h2>
+        <button id="searchLocationButton">Search</button>
+    </div>
+    <button id="useCurrentLocation">User Current Location</button>
+</section>
+
+<section id="container" class="displayNone">
+        <h2 id="timezone"></h2>
+
+        <div id="iconContainer">
+            <canvas id="icons" width="128" height="128"></canvas>
+        </div>
+
+        <h2 class="alignTextCenter" id="currentSummary"></h2>
+        <h2 class="alignTextCenter" id="temperature"></h2>
+
+        <div class="dataContainer">
+            <h2>Humidity</h2>
+            <h2 id="humidityVal"></h2>
+        </div>
+
+        <div class="dataContainer">
+            <h2>Wind Speed</h2>
+            <h2 id="windSpeedVal"></h2>
+        </div>
+
+        <div class="dataContainer">
+            <h2 id="dailySummary"></h2>
+        </div>
+</section>
+
+<script src="app.js"></script>
+    <script src="skycons.js"></script>
+</body>
+</html>
