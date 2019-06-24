@@ -23,8 +23,8 @@
 
             addIcons(icon, iconDiv);
 
-            // document.getElementById("userSearchPrompt").classList.add("displayNone");
             document.getElementById("container").classList.remove("displayNone");
+            document.getElementById("error").classList.add("displayNone");
         });
 }
 
@@ -37,12 +37,13 @@ function locationData(lat, long){
         })
         .then(info => {
             console.log(info);
-            document.getElementById("timezone").textContent = info.results[6].formatted_address;
+            document.getElementById("timezone").textContent = info.results[3].formatted_address;
         })
 }
 
 function searchData(address){
     const addressUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCL1XyeWCGSoTrrMrrXlOOmRDn9quGagUI`;
+    const inputAddress = document.getElementById("searchLocationInitial").value.toUpperCase();
     let searchLat = '';
     let searchLong = '';
 
@@ -53,6 +54,8 @@ function searchData(address){
         .then(info => {
             searchLat = info.results[0].geometry.location.lat;
             searchLong = info.results[0].geometry.location.lng;
+
+            document.getElementById("timezone").textContent = inputAddress;
             document.getElementById("error").classList.add("displayNone");
 
             weatherData(searchLong, searchLat);

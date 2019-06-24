@@ -1,6 +1,8 @@
 *{
     margin: 0;
     height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 @font-face{
@@ -10,10 +12,6 @@
 
 body{
     background-image: linear-gradient(rgb(126, 85, 214), rgb(112, 166, 255));
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*flex-direction: column;*/
 }
 
 .displayNone{
@@ -22,11 +20,12 @@ body{
 
 #container{
     height: auto;
-    width: 500px;
+    width: 40%;
     background-color: rgba(255, 255, 255, 0.07);
     color: rgba(255, 255, 255, 1);
     padding: 20px;
     border-radius: 10px;
+    margin: 5em auto;
 }
 
 #timezone{
@@ -52,7 +51,7 @@ body{
 }
 
 #userSearchPrompt{
-    width: auto;
+    width: 50%;
     height: auto;
     margin: auto;
 }
@@ -71,11 +70,26 @@ body{
     border:  none;
     border-bottom: 2px solid white;
     background-color: transparent;
-    margin-bottom: 1em;
-    height: 1em;
-    width: 500px;
+    margin: 1em 0 1em 0;
+    height: 1.5em;
+    width: 100%;
     font-size: 1.25em;
     color: white;
+    line-height: 4em;
+}
+
+#searchLocationButton{
+    width: 10%;
+}
+
+#userSearchPrompt{
+    margin-top: 2em;
+}
+
+#error{
+    color: white;
+    position: absolute;
+    height: 1.15em;
 }
 
 /*@media screen and (max-width: 480px){*/
