@@ -7,25 +7,29 @@
         .then(data => {
             console.log(data);
 
-            const temperature = data.currently.temperature.toFixed(0);
-            const humidity = data.currently.humidity * 100;
-            const fixedHumidity = humidity.toFixed(0);
-            const windSpeed = data.currently.windSpeed.toFixed(0);
-            const summary = data.daily.summary;
+            const iconDiv = document.getElementById("icons");
             const icon = data.currently.icon;
 
-            document.getElementById("temperature").textContent = temperature + " F";
-            document.getElementById("dailySummary").textContent = summary;
-            document.getElementById("humidityVal").textContent = fixedHumidity + "%";
-            document.getElementById("windSpeedVal").textContent = windSpeed + " mph";
-
-            const iconDiv = document.getElementById("icons");
-
             addIcons(icon, iconDiv);
+            currentWeather(data);
+            getMovieData(icon);
 
-            document.getElementById("container").classList.remove("displayNone");
+            document.getElementById("currentWeather").classList.remove("displayNone");
             document.getElementById("error").classList.add("displayNone");
         });
+}
+
+function currentWeather(data){
+    const temperature = data.currently.temperature.toFixed(0);
+    const humidity = data.currently.humidity * 100;
+    const fixedHumidity = humidity.toFixed(0);
+    const windSpeed = data.currently.windSpeed.toFixed(0);
+    const summary = data.daily.summary;
+
+    document.getElementById("temperature").textContent = temperature + "9\\xB0"+"F";
+    document.getElementById("dailySummary").textContent = summary;
+    document.getElementById("humidityVal").textContent = fixedHumidity + "%";
+    document.getElementById("windSpeedVal").textContent = windSpeed + " mph";
 }
 
 function locationData(lat, long){
@@ -37,7 +41,7 @@ function locationData(lat, long){
         })
         .then(info => {
             console.log(info);
-            document.getElementById("timezone").textContent = info.results[3].formatted_address;
+            document.getElementById("timezone").textContent = info.results[3].formatted_address.toUpperCase();
         })
 }
 
@@ -96,8 +100,97 @@ document.getElementById("searchLocationButton").addEventListener("click", functi
 
  function addIcons(icon, iconDiv){ //creates skycons from skycon.js, code came from dark sky
      let iconName = icon.replace(/-/g, '_').toUpperCase(); //replaces hyphen to an underscore to match dark sky data
-     let skycons = new Skycons({"color": "white"});
+     let skycons = new Skycons({"color": "black"});
      skycons.add(iconDiv, Skycons[iconName]);
      skycons.play();
  }
+
+ function getMovieData(icon){
+     let genreID = '';
+
+     switch(icon){
+         case 'clear-night':
+             genreID = 12;
+             console.log(genreID);
+             break;
+         case 'raining':
+             genreID = 12;
+             console.log(genreID);
+             break;
+         default:
+             genreID = 18;
+             console.log(genreID);
+     }
+
+     const mUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
+     console.log(genreID);
+     fetch(mUrl)
+         .then(response => {
+             return response.json(); //returns json object from the api.
+         })
+         .then(info => {
+             console.log(info);
+         });
+ }
+
+ // function returnGenreFromWeather(icon){
+ //     let genreID = '';
+ //     switch(icon){
+ //         case 'clear-night':
+ //             genreID = 12;
+ //             console.log(genreID);
+ //             break;
+ //         case 'raining':
+ //             genreID = 12;
+ //             console.log(genreID);
+ //             break;
+ //         default:
+ //             genreID = 18;
+ //             console.log(genreID);
+ //     }
+ // }
+
+ // function switchTab(){
+ //     const btns = document.getElementsByClassName("btn");
+ //     const section = document.getElementsByTagName("section");
+ //     let i = 0;
+ //     let id = "";
+ //
+ //     for(i; i<btns.length; i++){
+ //         let s = section[2+i].id;
+ //         btns[i].addEventListener("click", function(){
+ //             id = this.id+"Weather";
+ //
+ //             section.forEach(function(ele){
+ //                 if(id === ele){
+ //                     console.log("true: "+id+", "+s);
+ //                     // s.classList.remove("notActive");
+ //                     // s.classList.add("active");
+ //                 }
+ //                 else{
+ //                     console.log("false: "+id+", "+s);
+ //                 }
+ //
+ //                 // active = true;
+ //                 //
+ //                 if(ele.classList === "active"){
+ //                     console.log("true");
+ //                     document.getElementById(id).classList.remove("displayNone");
+ //                 }
+ //             });
+ //         });
+ //         console.log(s);
+ //
+ //         btns[i].addEventListener("blur", function() {
+ //             s.classList.add("notActive");
+ //             s.classList.remove("active");
+ //             document.getElementById(id).classList.add("displayNone");
+ //         });
+ //     }
+ //     // console.log(id);
+ // }
+
+
+
+ // switchTab();
 
