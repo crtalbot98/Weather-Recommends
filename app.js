@@ -24,10 +24,8 @@ function currentWeather(data){
     const humidity = data.currently.humidity * 100;
     const fixedHumidity = humidity.toFixed(0);
     const windSpeed = data.currently.windSpeed.toFixed(0);
-    const summary = data.daily.summary;
 
-    document.getElementById("temperature").textContent = temperature + "9\\xB0"+"F";
-    document.getElementById("dailySummary").textContent = summary;
+    document.getElementById("temperature").textContent = temperature + "F";
     document.getElementById("humidityVal").textContent = fixedHumidity + "%";
     document.getElementById("windSpeedVal").textContent = windSpeed + " mph";
 }
@@ -41,7 +39,10 @@ function locationData(lat, long){
         })
         .then(info => {
             console.log(info);
-            document.getElementById("timezone").textContent = info.results[3].formatted_address.toUpperCase();
+            const city = info.results[0].address_components[2].long_name;
+            const timezone = info.results[0].address_components[5].long_name;
+
+            document.getElementById("timezone").textContent = city+", "+timezone;
         })
 }
 

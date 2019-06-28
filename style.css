@@ -10,7 +10,12 @@
 }
 
 body{
-    background-image: linear-gradient(rgb(126, 85, 214), rgb(112, 166, 255));
+    background: linear-gradient(to bottom,
+    rgba(27,30,33,1) 0%,
+    rgba(27,30,33,1) 12%,
+    rgba(27,30,33,1) 64%,
+    rgba(27,47,94,1) 88%,
+    rgba(27,47,94,1) 100%);
 }
 
 .displayNone{
@@ -36,14 +41,21 @@ body{
     margin-bottom: 10px;
 }
 
+#locationIconContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+#temperature{
+    position: absolute;
+    margin-top: -1.25em;
+    height: auto;
+}
+
 #iconContainer{
     display: flex;
     justify-content: center;
 }
-
-/*#icons{*/
-/*    background-color: black;*/
-/*}*/
 
 .dataContainer{
     display: flex;
@@ -68,6 +80,10 @@ body{
     font-size: 1.50em;
 }
 
+#timezone{
+    display: flex;
+}
+
 #searchLocationInitial{
     border:  none;
     border-bottom: 2px solid white;
@@ -78,6 +94,11 @@ body{
     font-size: 1.25em;
     color: white;
     line-height: 4em;
+}
+
+#searchLocationInitial:focus{
+    border-bottom: 2px solid orange;
+    outline: 0;
 }
 
 #searchLocationButton{

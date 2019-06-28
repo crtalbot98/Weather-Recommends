@@ -19,13 +19,14 @@
 </section>
 
 <section id="currentWeather" class="container displayNone notActive">
-        <h2 id="timezone"></h2>
+        <div id="locationIconContainer">
+            <h2 id="timezone"></h2>
 
-        <div id="iconContainer">
-            <canvas id="icons" width="128" height="128"></canvas>
+            <div id="iconContainer">
+                <canvas id="icons" width="64" height="64"></canvas>
+            </div>
         </div>
 
-        <h2 class="alignTextCenter" id="currentSummary"></h2>
         <h2 class="alignTextCenter" id="temperature"></h2>
 
         <div class="dataContainer">
@@ -36,10 +37,6 @@
         <div class="dataContainer">
             <h2>Wind Speed</h2>
             <h2 id="windSpeedVal"></h2>
-        </div>
-
-        <div class="dataContainer">
-            <h2 id="dailySummary"></h2>
         </div>
 </section>
 
