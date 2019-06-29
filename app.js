@@ -135,9 +135,26 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          })
          .then(info => {
              console.log(info);
+             displayMovieData(info);
          });
  };
 
+ displayMovieData = (info) => {
+     const movieContainer = document.getElementById("movieRecommendations");
+
+     info.results.forEach(function(ele){
+         const movie = document.createElement("div");
+         const moviePoster = document.createElement("img");
+
+         movie.classList.add("movieStyling");
+         moviePoster.classList.add("moviePosterStyling");
+
+        moviePoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
+
+        movieContainer.append(movie);
+        movie.append(moviePoster);
+     });
+ };
  // function returnGenreFromWeather(icon){
  //     let genreID = '';
  //     switch(icon){

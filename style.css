@@ -1,7 +1,6 @@
 *{
     margin: 0;
     height: 100%;
-    box-sizing: border-box;
 }
 
 @font-face{
@@ -10,12 +9,11 @@
 }
 
 body{
-    background: linear-gradient(to bottom,
-    rgba(27,30,33,1) 0%,
-    rgba(27,30,33,1) 12%,
-    rgba(27,30,33,1) 64%,
-    rgba(27,47,94,1) 88%,
-    rgba(27,47,94,1) 100%);
+    background: linear-gradient(-45deg,
+    rgba(77,132,176,1) 0%,
+    rgba(77,132,176,1) 20%,
+    rgba(4,216,75,1) 80%,
+    rgba(4,216,75,1) 100%);
 }
 
 .displayNone{
@@ -24,11 +22,10 @@ body{
 
 .container{
     height: auto;
-    width: 50%;
-    background-color: rgb(255, 255, 255);
-    color: black;
-    padding: 20px;
-    margin: auto;
+    width: 30%;
+    color: #F6F4F3;
+    padding: 3em;
+    background-color: blue;
 }
 
 #timezone{
@@ -52,9 +49,14 @@ body{
     height: auto;
 }
 
-#iconContainer{
-    display: flex;
-    justify-content: center;
+/*#iconContainer{*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
+
+#icons{
+    height: auto;
+    width: auto;
 }
 
 .dataContainer{
@@ -64,10 +66,16 @@ body{
     margin-top: 20px;
 }
 
-#userSearchPrompt{
-    width: 50%;
+nav{
+    background-color: #F6F4F3;
+    color: black;
     height: auto;
-    margin: auto;
+    margin-top: 0;
+    padding: 0.5em 1em 1em 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #useCurrentLocation{
@@ -75,8 +83,7 @@ body{
 }
 
 #searchHeader{
-    margin-bottom: 2em;
-    color: white;
+    color: black;
     font-size: 1.50em;
 }
 
@@ -86,33 +93,45 @@ body{
 
 #searchLocationInitial{
     border:  none;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid black;
     background-color: transparent;
     margin: 1em 0 1em 0;
     height: 1.5em;
-    width: 100%;
+    width: 50%;
     font-size: 1.25em;
-    color: white;
+    color: black;
     line-height: 4em;
 }
 
 #searchLocationInitial:focus{
-    border-bottom: 2px solid orange;
+    border-bottom: 1px solid orange;
     outline: 0;
 }
 
-#searchLocationButton{
-    width: 4em;
-}
-
-#userSearchPrompt{
-    margin-top: 2em;
-}
-
 #error{
-    color: white;
+    color: black;
     position: absolute;
     height: 1.15em;
+    margin-top: -2.15em;
+}
+
+.btn{
+    background-color: rgba(77,132,176,1);
+    border: none;
+    color: #F6F4F3;
+    padding: 1em;
+}
+
+.movieStyling{
+    background-color: #F6F4F3;
+    margin: 1em;
+    height: auto;
+    width: 25em;
+}
+
+.moviePosterStyling{
+    height: auto;
+    width: auto;
 }
 
 /*@media screen and (max-width: 480px){*/

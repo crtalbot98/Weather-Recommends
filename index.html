@@ -8,15 +8,13 @@
 </head>
 <body>
 
-<section id="userSearchPrompt">
-    <div>
+<nav id="userSearchPrompt">
         <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
         <h3 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h3>
         <input name="searchLocation" id="searchLocationInitial" type="text">
-        <button id="searchLocationButton">Search</button>
-    </div>
-    <button id="useCurrentLocation">User Current Location</button>
-</section>
+        <button id="searchLocationButton" class="btn">Search</button>
+    <button id="useCurrentLocation" class="btn">User Current Location</button>
+</nav>
 
 <section id="currentWeather" class="container displayNone notActive">
         <div id="locationIconContainer">
@@ -38,6 +36,10 @@
             <h2>Wind Speed</h2>
             <h2 id="windSpeedVal"></h2>
         </div>
+</section>
+
+<section id="movieRecommendations">
+
 </section>
 
 <script src="app.js"></script>
