@@ -25,7 +25,7 @@ currentWeather = (data) => {
     const fixedHumidity = humidity.toFixed(0);
     const windSpeed = data.currently.windSpeed.toFixed(0);
 
-    document.getElementById("temperature").textContent = temperature + "F";
+    document.getElementById("temperature").textContent = temperature + "\xB0F";
     document.getElementById("humidityVal").textContent = fixedHumidity + "%";
     document.getElementById("windSpeedVal").textContent = windSpeed + " mph";
 };
@@ -145,74 +145,31 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
      info.results.forEach(function(ele){
          const movie = document.createElement("div");
          const moviePoster = document.createElement("img");
+         const movieDataContainer = document.createElement("div");
+         const movieTitle = document.createElement("h1");
+         const movieReleaseDate = document.createElement("h2");
+         const movieScore = document.createElement("div");
+         const movieOverview = document.createElement("p");
 
          movie.classList.add("movieStyling");
          moviePoster.classList.add("moviePosterStyling");
+         movieScore.classList.add("movieScoreStyling");
+         movieOverview.classList.add("movieOverviewStyling");
+         movieDataContainer.classList.add("movieContainerStyling");
 
         moviePoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
+        movieTitle.textContent = ele.title;
+        movieReleaseDate.textContent = ele.release_date.slice(0,4);
+        movieScore.textContent = ele.vote_average;
+        movieOverview.textContent = ele.overview;
 
         movieContainer.append(movie);
         movie.append(moviePoster);
+        movie.append(movieDataContainer);
+        movieDataContainer.append(movieTitle);
+        movieDataContainer.append(movieReleaseDate);
+        movie.append(movieScore);
+        movieDataContainer.append(movieOverview);
      });
  };
- // function returnGenreFromWeather(icon){
- //     let genreID = '';
- //     switch(icon){
- //         case 'clear-night':
- //             genreID = 12;
- //             console.log(genreID);
- //             break;
- //         case 'raining':
- //             genreID = 12;
- //             console.log(genreID);
- //             break;
- //         default:
- //             genreID = 18;
- //             console.log(genreID);
- //     }
- // }
-
- // function switchTab(){
- //     const btns = document.getElementsByClassName("btn");
- //     const section = document.getElementsByTagName("section");
- //     let i = 0;
- //     let id = "";
- //
- //     for(i; i<btns.length; i++){
- //         let s = section[2+i].id;
- //         btns[i].addEventListener("click", function(){
- //             id = this.id+"Weather";
- //
- //             section.forEach(function(ele){
- //                 if(id === ele){
- //                     console.log("true: "+id+", "+s);
- //                     // s.classList.remove("notActive");
- //                     // s.classList.add("active");
- //                 }
- //                 else{
- //                     console.log("false: "+id+", "+s);
- //                 }
- //
- //                 // active = true;
- //                 //
- //                 if(ele.classList === "active"){
- //                     console.log("true");
- //                     document.getElementById(id).classList.remove("displayNone");
- //                 }
- //             });
- //         });
- //         console.log(s);
- //
- //         btns[i].addEventListener("blur", function() {
- //             s.classList.add("notActive");
- //             s.classList.remove("active");
- //             document.getElementById(id).classList.add("displayNone");
- //         });
- //     }
- //     // console.log(id);
- // }
-
-
-
- // switchTab();
 

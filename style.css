@@ -1,6 +1,5 @@
 *{
     margin: 0;
-    height: 100%;
 }
 
 @font-face{
@@ -9,11 +8,12 @@
 }
 
 body{
-    background: linear-gradient(-45deg,
-    rgba(77,132,176,1) 0%,
-    rgba(77,132,176,1) 20%,
-    rgba(4,216,75,1) 80%,
-    rgba(4,216,75,1) 100%);
+    /*background: linear-gradient(-45deg,*/
+    /*rgba(77,132,176,1) 0%,*/
+    /*rgba(77,132,176,1) 20%,*/
+    /*rgba(4,216,75,1) 80%,*/
+    /*rgba(4,216,75,1) 100%);*/
+    background-color: white;
 }
 
 .displayNone{
@@ -22,10 +22,12 @@ body{
 
 .container{
     height: auto;
-    width: 30%;
+    width: 50%;
+    margin: auto;
     color: #F6F4F3;
     padding: 3em;
     background-color: blue;
+    box-sizing: border-box;
 }
 
 #timezone{
@@ -108,6 +110,13 @@ nav{
     outline: 0;
 }
 
+#searchLocationButton{
+    position: absolute;
+    height: 2em;
+    margin: -0.80em 0 0 22em;
+    padding: 0;
+}
+
 #error{
     color: black;
     position: absolute;
@@ -122,16 +131,48 @@ nav{
     padding: 1em;
 }
 
+#movieRecommendations{
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
 .movieStyling{
-    background-color: #F6F4F3;
+    background-color: white;
     margin: 1em;
     height: auto;
-    width: 25em;
+    width: 36em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.15);
 }
 
 .moviePosterStyling{
     height: auto;
     width: auto;
+    margin-right: 2em;
+}
+
+.movieScoreStyling{
+    height: 1.15em;
+    width: 1.15em;
+    margin: 0.25em;
+    border: 2px solid yellow;
+    border-radius: 2em;
+    padding: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.movieOverviewStyling{
+    margin-top: 3em;
+}
+
+.movieContainerStyling{
+    margin-top: 0.5em;
 }
 
 /*@media screen and (max-width: 480px){*/
