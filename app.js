@@ -112,22 +112,25 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
      switch(icon){
          case 'clear-night':
              genreID = 12;
-             console.log(genreID);
              break;
          case 'raining':
-             genreID = 12;
-             console.log(genreID);
+             genreID = 53;
+             break;
+         case 'cloudy':
+             genreID = 9648;
+             break;
+         case 'partly-cloudy-night':
+             genreID = 27;
              break;
          default:
              genreID = 18;
-             console.log(genreID);
      }
 
      getMovieData(genreID);
  };
 
  getMovieData = (genreID) => {
-     const mUrl = `https://api.themoviedb.org/3/discover/movie?with_genres=${genreID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
+     const mUrl = `https://api.thetvdb.org/3/discover/tv?with_genres=${genreID}&vote_count.gte=7&with_networks=213&api_key=8537640e0fb0b17e1614e53e9322da86`;
      console.log(genreID);
      fetch(mUrl)
          .then(response => {
@@ -140,36 +143,38 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
  };
 
  displayMovieData = (info) => {
-     const movieContainer = document.getElementById("movieRecommendations");
+     const tvContainer = document.getElementById("tvRecommendations");
 
      info.results.forEach(function(ele){
-         const movie = document.createElement("div");
-         const moviePoster = document.createElement("img");
-         const movieDataContainer = document.createElement("div");
-         const movieTitle = document.createElement("h1");
-         const movieReleaseDate = document.createElement("h2");
-         const movieScore = document.createElement("div");
-         const movieOverview = document.createElement("p");
+         const tv = document.createElement("div");
+         const tvPoster = document.createElement("img");
+         const tvDataContainer = document.createElement("div");
+         const tvTitle = document.createElement("h1");
+         const tvReleaseDate = document.createElement("h2");
+         const tvScore = document.createElement("div");
+         const tvOverview = document.createElement("p");
 
-         movie.classList.add("movieStyling");
-         moviePoster.classList.add("moviePosterStyling");
-         movieScore.classList.add("movieScoreStyling");
-         movieOverview.classList.add("movieOverviewStyling");
-         movieDataContainer.classList.add("movieContainerStyling");
+         let slicedOverview = ele.overview.slice(0, 150);
 
-        moviePoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
-        movieTitle.textContent = ele.title;
-        movieReleaseDate.textContent = ele.release_date.slice(0,4);
-        movieScore.textContent = ele.vote_average;
-        movieOverview.textContent = ele.overview;
+         tv.classList.add("tvStyling");
+         tvPoster.classList.add("tvPosterStyling");
+         tvScore.classList.add("tvScoreStyling");
+         tvOverview.classList.add("tvOverviewStyling");
+         tvDataContainer.classList.add("tvContainerStyling");
 
-        movieContainer.append(movie);
-        movie.append(moviePoster);
-        movie.append(movieDataContainer);
-        movieDataContainer.append(movieTitle);
-        movieDataContainer.append(movieReleaseDate);
-        movie.append(movieScore);
-        movieDataContainer.append(movieOverview);
+        tvPoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
+        tvTitle.textContent = ele.original_name;
+        tvReleaseDate.textContent = ele.release_date.slice(0,4);
+        tvScore.textContent = ele.vote_average;
+        tvOverview.textContent = slicedOverview;
+
+        tvContainer.append(tv);
+        tv.append(tvPoster);
+        tv.append(tvDataContainer);
+        tvDataContainer.append(tvTitle);
+        tvDataContainer.append(tvReleaseDate);
+        tv.append(tvScore);
+        tvDataContainer.append(tvOverview);
      });
  };
 
