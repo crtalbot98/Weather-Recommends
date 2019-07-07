@@ -131,7 +131,7 @@ nav{
     padding: 1em;
 }
 
-#movieRecommendations{
+#tvRecommendations{
     margin: auto;
     width: 100%;
     display: flex;
@@ -139,7 +139,7 @@ nav{
     flex-wrap: wrap;
 }
 
-.movieStyling{
+.tvStyling{
     background-color: white;
     margin: 1em;
     height: auto;
@@ -150,13 +150,13 @@ nav{
     box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.15);
 }
 
-.moviePosterStyling{
+.tvPosterStyling{
     height: auto;
     width: auto;
     margin-right: 2em;
 }
 
-.movieScoreStyling{
+.tvScoreStyling{
     height: 1.15em;
     width: 1.15em;
     margin: 0.25em;
@@ -167,11 +167,11 @@ nav{
     text-align: center;
 }
 
-.movieOverviewStyling{
+.tvOverviewStyling{
     margin-top: 3em;
 }
 
-.movieContainerStyling{
+.tvContainerStyling{
     margin-top: 0.5em;
 }
 

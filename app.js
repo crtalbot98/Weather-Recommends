@@ -130,7 +130,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
  };
 
  getMovieData = (genreID) => {
-     const mUrl = `https://api.thetvdb.org/3/discover/tv?with_genres=${genreID}&vote_count.gte=7&with_networks=213&api_key=8537640e0fb0b17e1614e53e9322da86`;
+     const mUrl = ` https://api.themoviedb.org/3/tv/top_rated?with_genres=${genreID}&with_networks=213&api_key=8537640e0fb0b17e1614e53e9322da86`;
      console.log(genreID);
      fetch(mUrl)
          .then(response => {
@@ -164,17 +164,17 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
 
         tvPoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
         tvTitle.textContent = ele.original_name;
-        tvReleaseDate.textContent = ele.release_date.slice(0,4);
+        tvReleaseDate.textContent = ele.release_date;
         tvScore.textContent = ele.vote_average;
         tvOverview.textContent = slicedOverview;
 
-        tvContainer.append(tv);
         tv.append(tvPoster);
         tv.append(tvDataContainer);
         tvDataContainer.append(tvTitle);
         tvDataContainer.append(tvReleaseDate);
         tv.append(tvScore);
         tvDataContainer.append(tvOverview);
+        tvContainer.append(tv);
      });
  };
 
