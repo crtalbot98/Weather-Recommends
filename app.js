@@ -113,7 +113,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          case 'clear-night':
              genreID = 12;
              break;
-         case 'raining':
+         case 'rain':
              genreID = 53;
              break;
          case 'cloudy':
@@ -121,6 +121,12 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
              break;
          case 'partly-cloudy-night':
              genreID = 27;
+             break;
+         case 'partly-cloudy-day':
+             genreID = 35;
+             break;
+         case 'snow':
+             genreID = 14;
              break;
          default:
              genreID = 18;
@@ -130,7 +136,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
  };
 
  getMovieData = (genreID) => {
-     const mUrl = ` https://api.themoviedb.org/3/tv/top_rated?with_genres=${genreID}&with_networks=213&api_key=8537640e0fb0b17e1614e53e9322da86`;
+     const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=213&api_key=8537640e0fb0b17e1614e53e9322da86`;
      console.log(genreID);
      fetch(mUrl)
          .then(response => {
@@ -150,7 +156,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          const tvPoster = document.createElement("img");
          const tvDataContainer = document.createElement("div");
          const tvTitle = document.createElement("h1");
-         const tvReleaseDate = document.createElement("h2");
+         const tvReleaseDate = document.createElement("h3");
          const tvScore = document.createElement("div");
          const tvOverview = document.createElement("p");
 
@@ -164,7 +170,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
 
         tvPoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
         tvTitle.textContent = ele.original_name;
-        tvReleaseDate.textContent = ele.release_date;
+        tvReleaseDate.textContent = "Originally aired in "+ ele.first_air_date.slice(0,4);
         tvScore.textContent = ele.vote_average;
         tvOverview.textContent = slicedOverview;
 
