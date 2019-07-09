@@ -108,8 +108,19 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
 
  getMovieGenre = (icon) => {
      let genreID = '';
+     let networkID = '';
+     const checkboxes = document.getElementsByClassName("checkbox");
 
-     switch(icon){
+     for(let i = 0; i<checkboxes.length; i++){
+         if(checkboxes[i].checked){
+             networkID += "|"+checkboxes[i].value;
+         }
+     }
+
+     networkID = networkID.substring(1);
+     console.log(networkID);
+
+     switch(icon){ //Get genre based on the icon property returned from dark sky.
          case 'clear-night':
              genreID = 12;
              break;
@@ -132,11 +143,11 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
              genreID = 18;
      }
 
-     getMovieData(genreID);
+     getMovieData(genreID, networkID);
  };
 
- getMovieData = (genreID) => {
-     const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=213&api_key=8537640e0fb0b17e1614e53e9322da86`;
+ getMovieData = (genreID, networkID) => {
+     const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=${networkID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
      console.log(genreID);
      fetch(mUrl)
          .then(response => {
@@ -144,6 +155,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          })
          .then(info => {
              console.log(info);
+             document.getElementById("tvRecommendations").innerHTML = '';
              displayMovieData(info);
          });
  };
