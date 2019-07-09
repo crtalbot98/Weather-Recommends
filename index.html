@@ -9,11 +9,19 @@
 <body>
 
 <nav id="userSearchPrompt">
-        <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
-        <h3 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h3>
-        <input name="searchLocation" id="searchLocationInitial" type="text">
-        <button id="searchLocationButton" class="btn">Search</button>
+    <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
+    <h3 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h3>
+    <input name="searchLocation" id="searchLocationInitial" type="text">
+    <button id="searchLocationButton" class="btn">Search</button>
     <button id="useCurrentLocation" class="btn">User Current Location</button>
+    <div>
+        <label for="netflixCheckBox">Netflix</label>
+        <input type="checkbox" name="netflix" id="netflixCheckBox" class="checkbox" value="213">
+        <label for="huluCheckBox">Hulu</label>
+        <input type="checkbox" name="hulu" id="huluCheckBox" class="checkbox" value="453">
+        <label for="amazonCheckBox">Amazon Prime</label>
+        <input type="checkbox" name="amazon" id="amazonCheckBox" class="checkbox" value="1024">
+    </div>
 </nav>
 
 <section id="currentWeather" class="container displayNone notActive">

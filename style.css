@@ -51,11 +51,6 @@ body{
     height: auto;
 }
 
-/*#iconContainer{*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
-
 #icons{
     height: auto;
     width: auto;
@@ -147,7 +142,9 @@ nav{
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    box-shadow: 5px 5px 5px 0 rgba(0,0,0,0.15);
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.3);
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
 }
 
 .tvPosterStyling{
