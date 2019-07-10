@@ -8,13 +8,23 @@
 </head>
 <body>
 
-<nav id="userSearchPrompt">
-    <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
-    <h3 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h3>
-    <input name="searchLocation" id="searchLocationInitial" type="text">
-    <button id="searchLocationButton" class="btn">Search</button>
-    <button id="useCurrentLocation" class="btn">User Current Location</button>
-    <div>
+<section class="spaceBetween infoNav">
+    <h1>Weather Recommends</h1>
+    <h3>Created by Chandler Talbot</h3>
+</section>
+
+<nav id="userSearchPrompt" class="spaceBetween">
+    <div class="alignLeftColumn">
+        <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
+        <h3 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h3>
+        <div>
+            <input name="searchLocation" id="searchLocationInitial" type="text">
+            <button id="searchLocationButton" class="btn">Search</button>
+        </div>
+        <button id="useCurrentLocation" class="btn">User Current Location</button>
+    </div>
+    <div class="alignLeftColumn">
+        <h1>Select Service(s)</h1>
         <label for="netflixCheckBox">Netflix</label>
         <input type="checkbox" name="netflix" id="netflixCheckBox" class="checkbox" value="213">
         <label for="huluCheckBox">Hulu</label>
@@ -49,6 +59,11 @@
 <section id="tvRecommendations">
 
 </section>
+
+<!--<footer class="infoNav">-->
+<!--    <h2>Powered by theMovieDB</h2>-->
+<!--    <p>Copyright 2019</p>-->
+<!--</footer>-->
 
 <script src="app.js"></script>
 <script src="skycons.js"></script>
