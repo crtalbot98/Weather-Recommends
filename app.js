@@ -172,7 +172,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          const tvScore = document.createElement("div");
          const tvOverview = document.createElement("p");
 
-         let slicedOverview = ele.overview.slice(0, 150);
+         let slicedOverview = ele.overview.slice(0, 150);;
 
          tv.classList.add("tvStyling");
          tvPoster.classList.add("tvPosterStyling");
@@ -193,6 +193,20 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
         tv.append(tvScore);
         tvDataContainer.append(tvOverview);
         tvContainer.append(tv);
+
+        changeRatingColor(ele.vote_average, tvScore);
      });
+ };
+
+ changeRatingColor = (ratingNum, ratingContainer) => {
+   if(ratingNum >= 7.0){
+       ratingContainer.classList.add("tvScore7Plus");
+   }
+   else if(ratingNum <= 6.9 && ratingNum >= 5.0){
+       ratingContainer.classList.add("tvScore5-7");
+   }
+   else{
+       ratingContainer.classList.add("tvScore4Below");
+   }
  };
 
