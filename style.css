@@ -158,11 +158,22 @@ nav{
     height: 1.15em;
     width: 1.15em;
     margin: 0.25em;
-    border: 2px solid yellow;
     border-radius: 2em;
     padding: 0.5em;
     font-size: 1.5em;
     text-align: center;
+}
+
+.tvScore7Plus{
+    border: 2px solid #255fff;
+}
+
+.tvScore5-7{
+    border: 2px solid #59802a;
+}
+
+.tvScore4Below{
+    border: 2px solid #ff282f;
 }
 
 .tvOverviewStyling{
