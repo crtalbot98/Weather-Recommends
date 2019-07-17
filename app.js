@@ -14,7 +14,6 @@
             currentWeather(data);
             getMovieGenre(icon);
 
-            document.getElementById("currentWeather").classList.remove("displayNone");
             document.getElementById("error").classList.add("displayNone");
         });
 };
@@ -49,6 +48,7 @@ locationData = (lat, long) => {
 searchData = (address) => {
     const addressUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCL1XyeWCGSoTrrMrrXlOOmRDn9quGagUI`;
     const inputAddress = document.getElementById("searchLocationInitial").value.toUpperCase();
+    const addressError = document.getElementById("error");
     let searchLat = '';
     let searchLong = '';
 
@@ -66,9 +66,9 @@ searchData = (address) => {
             weatherData(searchLong, searchLat);
         })
         .catch( error =>{
-            console.log("error!");
-            document.getElementById("error").classList.remove("displayNone");
-            throw(error);
+            addressError.classList.remove("displayNone");
+            addressError.textContent = 'Please input a location';
+            throw("Please input a location");
     });
 
 };
@@ -109,7 +109,10 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
  getMovieGenre = (icon) => {
      let genreID = '';
      let networkID = '';
-     const checkboxes = document.getElementsByClassName("checkbox");
+     let choiceDescription = '';
+     const checkboxes = document.querySelectorAll("input[type='checkbox']");
+     const choiceDescText = document.getElementById("choiceDescription");
+     const networkError = document.getElementById("error");
 
      for(let i = 0; i<checkboxes.length; i++){
          if(checkboxes[i].checked){
@@ -120,35 +123,66 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
      networkID = networkID.substring(1);
      console.log(networkID);
 
-     switch(icon){ //Get genre based on the icon property returned from dark sky.
+     if(networkID === ''){
+         networkError.textContent = 'Please select a service';
+         networkError.classList.remove("displayNone");
+         throw ("Please select a service");
+     }
+
+     switch(icon){ //Get genre based on the icon property returned from dark sky and create a description.
          case 'clear-night':
              genreID = 12;
+             choiceDescription = "It's a clear night tonight. So why not begin an adventure.";
              break;
          case 'rain':
-             genreID = 53;
+             genreID = '53|18';
+             choiceDescription = "It seems to be raining. This might be a good time to start a thriller";
              break;
          case 'cloudy':
              genreID = 9648;
+             choiceDescription = "It's cloudy out, maybe a mystery will fit this dreary day.";
              break;
          case 'partly-cloudy-night':
              genreID = 27;
+             choiceDescription = "It's a dark dreary night. This is a perfect time to start a horror show";
              break;
          case 'partly-cloudy-day':
              genreID = 35;
+             choiceDescription = "It's a fair day, why not begin a comedy.";
              break;
          case 'snow':
              genreID = 14;
+             choiceDescription = "It's cold and snowing. You should forget about it by going into a fantasy world";
+             break;
+         case 'wind':
+             genreID = 99;
+             choiceDescription = "The winds are howling out... That's a great time to learn something from a documentary.";
+             break;
+         case 'fog':
+             genreID = '27|53|9648';
+             choiceDescription = "The fog outside is quite ominous. That means it is a great time to start a horror show.";
+             break;
+         case 'sleet':
+             genreID = 878;
+             choiceDescription = "It's sleeting out, why don't you watch a science fiction show to forget about it.";
              break;
          default:
              genreID = 18;
+             choiceDescription = "There's an issue... So why not just start a simple drama."
      }
 
+     console.log(choiceDescription);
+     choiceDescText.textContent = choiceDescription;
      getMovieData(genreID, networkID);
  };
 
  getMovieData = (genreID, networkID) => {
      const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=${networkID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
+     const loadingIcon = document.getElementById("loadingIcon");
      console.log(genreID);
+
+     loadingIcon.classList.remove("displayNone");
+
      fetch(mUrl)
          .then(response => {
              return response.json(); //returns json object from the api.
@@ -156,6 +190,8 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          .then(info => {
              console.log(info);
              document.getElementById("tvRecommendations").innerHTML = '';
+             loadingIcon.classList.add("displayNone");
+             document.getElementById("currentWeather").classList.remove("displayNone");
              displayMovieData(info);
          });
  };
@@ -172,7 +208,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          const tvScore = document.createElement("div");
          const tvOverview = document.createElement("p");
 
-         let slicedOverview = ele.overview.slice(0, 150);;
+         let slicedOverview = ele.overview.slice(0, 450);
 
          tv.classList.add("tvStyling");
          tvPoster.classList.add("tvPosterStyling");
@@ -209,4 +245,3 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
        ratingContainer.classList.add("tvScore4Below");
    }
  };
-
