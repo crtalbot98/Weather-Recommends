@@ -13,26 +13,41 @@
     <h3>Created by Chandler Talbot</h3>
 </section>
 
-<nav id="userSearchPrompt" class="spaceBetween">
+<nav id="userSearchPrompt" class="alignCenter infoNav searchPromptContainer">
     <div class="alignLeftColumn">
-        <label for="searchLocationInitial" id="searchHeader">Enter a Location</label>
-        <h3 id="error" class="displayNone">Please input a correct location, ie Los Angeles, California</h3>
+        <label for="searchLocationInitial" id="searchHeader">Enter Services and Location</label>
+        <div class="displayRow">
+            <div class="checkboxContainer">
+                <label for="netflixCheckBox">
+                    <input type="checkbox" name="netflix" id="netflixCheckBox" value="213">
+                    <span>Netflix</span>
+                </label>
+            </div>
+            <div class="checkboxContainer">
+                <label for="huluCheckBox">
+                    <input type="checkbox" name="hulu" id="huluCheckBox" value="453">
+                    <span>Hulu</span>
+                </label>
+            </div>
+            <div class="checkboxContainer">
+                <label for="amazonCheckBox">
+                    <input type="checkbox" name="amazon" id="amazonCheckBox" value="1024">
+                    <span>Amazon Prime</span>
+                </label>
+            </div>
+        </div>
         <div>
+            <h4 id="error" class="displayNone"></h4>
             <input name="searchLocation" id="searchLocationInitial" type="text">
             <button id="searchLocationButton" class="btn">Search</button>
         </div>
         <button id="useCurrentLocation" class="btn">User Current Location</button>
     </div>
-    <div class="alignLeftColumn">
-        <h1>Select Service(s)</h1>
-        <label for="netflixCheckBox">Netflix</label>
-        <input type="checkbox" name="netflix" id="netflixCheckBox" class="checkbox" value="213">
-        <label for="huluCheckBox">Hulu</label>
-        <input type="checkbox" name="hulu" id="huluCheckBox" class="checkbox" value="453">
-        <label for="amazonCheckBox">Amazon Prime</label>
-        <input type="checkbox" name="amazon" id="amazonCheckBox" class="checkbox" value="1024">
-    </div>
 </nav>
+
+<section id="loadingIcon" class="loadIcon displayCenter displayNone">
+
+</section>
 
 <section id="currentWeather" class="container displayNone notActive">
         <div id="locationIconContainer">
@@ -56,14 +71,13 @@
         </div>
 </section>
 
+<section>
+    <p id="choiceDescription"></p>
+</section>
+
 <section id="tvRecommendations">
 
 </section>
-
-<!--<footer class="infoNav">-->
-<!--    <h2>Powered by theMovieDB</h2>-->
-<!--    <p>Copyright 2019</p>-->
-<!--</footer>-->
 
 <script src="app.js"></script>
 <script src="skycons.js"></script>
