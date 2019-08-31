@@ -12,7 +12,7 @@
 
             addIcons(icon, iconDiv);
             currentWeather(data);
-            getMovieGenre(icon);
+            getTvGenre(icon);
 
             document.getElementById("error").classList.add("displayNone");
         });
@@ -90,12 +90,14 @@ getLatAndLong = () => {
 
 document.getElementById("useCurrentLocation").addEventListener("click", function () {
     getLatAndLong();
+    document.getElementById("loadingIcon").classList.remove("displayNone");
 });
 
 document.getElementById("searchLocationButton").addEventListener("click", function () {
     const address = document.getElementById("searchLocationInitial").value;
     address.replace(/ /g, '+');
 
+    document.getElementById("loadingIcon").classList.remove("displayNone");
     searchData(address);
 });
 
@@ -106,7 +108,7 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
      skycons.play();
  };
 
- getMovieGenre = (icon) => {
+ getTvGenre = (icon) => {
      let genreID = '';
      let networkID = '';
      let choiceDescription = '';
@@ -166,6 +168,10 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
              genreID = 878;
              choiceDescription = "It's sleeting out, why don't you watch a science fiction show to forget about it.";
              break;
+         case 'clear-day':
+             genreID = 18;
+             choiceDescription = "It's a nice day, why not start a drama.";
+             break;
          default:
              genreID = 18;
              choiceDescription = "There's an issue... So why not just start a simple drama."
@@ -173,15 +179,13 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
 
      console.log(choiceDescription);
      choiceDescText.textContent = choiceDescription;
-     getMovieData(genreID, networkID);
+     getTvData(genreID, networkID);
  };
 
- getMovieData = (genreID, networkID) => {
+ getTvData = (genreID, networkID) => { //Get the related television data from  theMovieDB
      const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=${networkID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
      const loadingIcon = document.getElementById("loadingIcon");
      console.log(genreID);
-
-     loadingIcon.classList.remove("displayNone");
 
      fetch(mUrl)
          .then(response => {
@@ -192,14 +196,14 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
              document.getElementById("tvRecommendations").innerHTML = '';
              loadingIcon.classList.add("displayNone");
              document.getElementById("currentWeather").classList.remove("displayNone");
-             displayMovieData(info);
+             displayTvData(info);
          });
  };
 
- displayMovieData = (info) => {
+ displayTvData = (info) => { //Insert the data returned from theMovieDb into index.html
      const tvContainer = document.getElementById("tvRecommendations");
 
-     info.results.forEach(function(ele){
+     info.results.forEach(function(ele){ //Loops through the JSON returned from theMovieDB
          const tv = document.createElement("div");
          const tvPoster = document.createElement("img");
          const tvDataContainer = document.createElement("div");
@@ -207,8 +211,6 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
          const tvReleaseDate = document.createElement("h3");
          const tvScore = document.createElement("div");
          const tvOverview = document.createElement("p");
-
-         let slicedOverview = ele.overview.slice(0, 450);
 
          tv.classList.add("tvStyling");
          tvPoster.classList.add("tvPosterStyling");
@@ -218,9 +220,9 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
 
         tvPoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
         tvTitle.textContent = ele.original_name;
-        tvReleaseDate.textContent = "Originally aired in "+ ele.first_air_date.slice(0,4);
+        tvReleaseDate.textContent = "Originally aired in "+ shortenText(ele.first_air_date, 4);
         tvScore.textContent = ele.vote_average;
-        tvOverview.textContent = slicedOverview;
+        tvOverview.textContent = shortenText(ele.overview, 250);
 
         tv.append(tvPoster);
         tv.append(tvDataContainer);
@@ -230,11 +232,27 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
         tvDataContainer.append(tvOverview);
         tvContainer.append(tv);
 
-        changeRatingColor(ele.vote_average, tvScore);
+        tvDataContainer.addEventListener("click", function(){
+            displayPopUp(ele.poster_path, ele.original_name, ele.overview, ele.vote_average, ele.first_air_date, ele.backdrop_path);
+        });
+
+         changeRatingColor(ele.vote_average, tvScore); //Change the color of the tvScore, so it is easier to discern between scores
+         addDecimalPoint(ele.vote_average, tvScore); //Some of the ratings returned from theMovieDB lack a decimal point. Add a decimal to make data fit with the rest.
      });
  };
 
- changeRatingColor = (ratingNum, ratingContainer) => {
+ shortenText = (text, val) => { //Shortens the overview, so it fits inside tvDataContainer
+     let slicedText = text.slice(0, val); //Slices text to a selected number of characters starting at the first character
+
+     if(slicedText.length >= 250){
+         return slicedText = slicedText+"...";
+     }
+     else{
+         return slicedText;
+     }
+ };
+
+ changeRatingColor = (ratingNum, ratingContainer) => { //Change the color of the tvScore, so it is easier to discern between scores
    if(ratingNum >= 7.0){
        ratingContainer.classList.add("tvScore7Plus");
    }
@@ -245,3 +263,53 @@ addIcons = (icon, iconDiv) => { //creates skycons from skycon.js, code came from
        ratingContainer.classList.add("tvScore4Below");
    }
  };
+
+ addDecimalPoint = (ratingNum, scoreContainer) =>{ //Some of the ratings returned from theMovieDB lack a decimal point. Adds a decimal to make data fit with the rest.
+     ratingNum = String(ratingNum);
+     if(ratingNum.length < 2 && ratingNum < 10 && ratingNum > 0){
+         scoreContainer.textContent = ratingNum+".0";
+         console.log(scoreContainer.textContent);
+     }
+ };
+
+ displayPopUp = (poster, title, overview, score, date, backdrop) => {
+     const popUpContainer = document.getElementById("popUpContainer");
+     const popUp = document.getElementById("popUp");
+     const popUpPoster = document.createElement("img");
+     const popUpTitle = document.createElement("h1");
+     const popUpReleaseDate = document.createElement("h3");
+     const popUpScore = document.createElement("div");
+     const popUpOverview = document.createElement("p");
+
+     popUpContainer.classList.remove("displayNone");
+     popUp.classList.remove("displayNone");
+     popUpContainer.classList.add("centerChildren");
+     popUpScore.classList.add("tvScoreStyling");
+
+     popUpPoster.src = 'https://image.tmdb.org/t/p/w342'+poster;
+     popUpContainer.style.backgroundImage = `url(https://image.tmdb.org/t/p/original${backdrop})`;
+     popUpTitle.textContent = title;
+     popUpReleaseDate.textContent = date;
+     popUpScore.textContent = score;
+     popUpOverview.textContent = overview;
+
+     popUp.append(popUpPoster);
+     popUp.append(popUpTitle);
+     popUp.append(popUpScore);
+     popUp.append(popUpReleaseDate);
+     popUp.append(popUpOverview);
+
+     changeRatingColor(score, popUpScore);
+ };
+
+ document.getElementById("closePopUp").addEventListener("click", function(e){
+     const popUpCont = document.getElementById("popUpContainer");
+     const popUp = document.getElementById("popUp");
+
+     popUpCont.classList.add("displayNone");
+     popUpCont.classList.remove("centerChildren");
+     popUp.classList.add("displayNone");
+
+     popUp.innerHTML = '';
+     popUpCont.style.backgroundImage = '';
+ });
