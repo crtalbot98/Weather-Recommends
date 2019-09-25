@@ -45,41 +45,35 @@
     </div>
 </nav>
 
+<section id="currentWeather" class="container displayNone notActive">
+    <div id="locationIconContainer">
+    <h2 id="timezone"></h2>
+
+    <div id="iconContainer">
+        <canvas id="icons" width="64" height="64"></canvas>
+        </div>
+    </div>
+
+    <h2 class="alignTextCenter" id="temperature"></h2>
+
+    <div class="dataContainer">
+        <h2>Humidity</h2>
+        <h2 id="humidityVal"></h2>
+    </div>
+
+    <div class="dataContainer">
+        <h2>Wind Speed</h2>
+        <h2 id="windSpeedVal"></h2>
+    </div>
+
+    <p id="choiceDescription"></p>
+</section>
+
 <section id="loadingIcon" class="loadIcon displayCenter displayNone">
 
 </section>
 
 <section id="popUpContainer" class="popUpContainer displayNone fullWidthContainer blurElement">
-</section>
-
-<section id="popUp" class="popUp alignFixedCenter displayNone">
-    <button id="closePopUp">
-        X
-    </button>
-</section>
-
-<section id="currentWeather" class="container displayNone notActive">
-        <div id="locationIconContainer">
-            <h2 id="timezone"></h2>
-
-            <div id="iconContainer">
-                <canvas id="icons" width="64" height="64"></canvas>
-            </div>
-        </div>
-
-        <h2 class="alignTextCenter" id="temperature"></h2>
-
-        <div class="dataContainer">
-            <h2>Humidity</h2>
-            <h2 id="humidityVal"></h2>
-        </div>
-
-        <div class="dataContainer">
-            <h2>Wind Speed</h2>
-            <h2 id="windSpeedVal"></h2>
-        </div>
-
-        <p id="choiceDescription"></p>
 </section>
 
 <section id="tvRecommendations">

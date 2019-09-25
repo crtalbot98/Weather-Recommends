@@ -3,13 +3,12 @@
 }
 
 html, body{
-    height: 100%;
     font-family: "Open Sans", serif;
 }
 
 @font-face{
     font-family: 'Open Sans', "Open Sans";
-    src("assets/OpenSans-Regular.ttf");
+src("assets/OpenSans-Regular.ttf");
 }
 
 .spaceBetween{
@@ -51,9 +50,10 @@ html, body{
 
 .popUp{
     position: fixed;
-    padding: 0 5em 0 5em;
+    padding: 1em;
+    box-sizing: border-box;
     z-index: 3;
-    height: 32em;
+    height: auto;
     width: 100%;
     bottom: 0;
     background-color: #FFFFFF;
@@ -73,7 +73,7 @@ html, body{
 }
 
 .infoNav{
-    padding: 0.5em 1em 0.5em 1em;
+    padding: 1em;
     background-color: #071338;
     color: #FFFFFF;
 }
@@ -97,12 +97,43 @@ html, body{
     border-bottom: 1px solid #6b7877;
 }
 
-#popUpContainer{
+.popUpContainer{
     position: fixed;
     z-index: 2;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.popUp div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    height: 80%;
+}
+
+.popUp .tvScoreStyling{
+    height: 2em;
+    align-self: flex-end;
+    border-radius: 0.5em;
+}
+
+.popUp button{
+    width: 1em;
+    height: 1em;
+    font-size: 2em;
+    background-color: transparent;
+    border: none;
+    align-self: flex-start;
+}
+
+.popUp p {
+    margin-top: 4em;
+}
+
+.popUp button:hover{
+    color: #CD2A49;
 }
 
 .fullWidthContainer{
@@ -112,7 +143,7 @@ html, body{
 }
 
 .blurElement{
-   filter:blur(4px);
+    filter:blur(4px);
 }
 
 .centerChildren{
@@ -189,7 +220,7 @@ nav{
 }
 
 #searchLocationInitial:focus{
-    border-bottom: 1px solid #EF3054;
+    border-bottom: 1px solid #CD2A49;
     outline: 0;
 }
 
@@ -199,7 +230,7 @@ nav{
 }
 
 .btn{
-    background-color: #EF3054;
+    background-color: #cd2a49;
     border: none;
     color: #FFFFFF;
     padding: 0.5em;
@@ -210,7 +241,8 @@ nav{
 
 #tvRecommendations{
     margin: auto;
-    width: 85%;
+    width: 60%;
+    max-width: 65%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -285,15 +317,20 @@ input[type=checkbox]{
 }
 
 label input[type=checkbox]:hover ~ *{
-    border-bottom: 2px solid #EF3054;
+    border-bottom: 2px solid #CD2A49;
 }
 
 label input[type=checkbox]:checked ~ *{
-    border-bottom: 2px solid #EF3054;
+    border-bottom: 2px solid #CD2A49;
 }
 
 #choiceDescription{
     text-align: center;
+}
+
+footer{
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @keyframes loadingAnimation {
@@ -316,14 +353,127 @@ label input[type=checkbox]:checked ~ *{
     100% {opacity: 1}
 }
 
-/*@media screen and (max-width: 480px){*/
-    /*body{*/
-        /*background-image: linear-gradient(rgb(126, 85, 214), rgb(112, 166, 255));*/
-    /*}*/
+@media screen and (max-width: 1300px){
+    .container{
+        padding: 2em 5em 2em 5em;
+    }
 
-    /*#container{*/
-        /*background-color: rgba(255, 255, 255, 0.07);*/
-        /*color: rgba(255, 255, 255, 1);*/
-        /*padding: 20px;*/
-    /*}*/
-/*}*/
+    #tvRecommendations{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .tvStyling{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .searchPromptContainer{
+        padding: 3em 5em 3em 5em;
+    }
+}
+
+@media screen and (max-width: 600px){
+    section.spaceBetween.infoNav{
+        padding: 0;
+        height: 10vh;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .searchPromptContainer{
+        padding: 0 3em 0 3em;
+        min-height: 90vh;
+    }
+
+    .btn:nth-of-type(1){
+        align-self: flex-end;
+    }
+
+    .btn:nth-of-type(2){
+        margin-top: 2em;
+        align-self: flex-start;
+    }
+
+    .alignLeftColumn{
+        width: 100%;
+    }
+
+    #searchLocationInitial{
+        width: 100%;
+    }
+
+    .tvStyling{
+        width: 100%;
+        margin: 0;
+        border: none;
+        border-top: 0.025em solid #6b7877;
+        border-radius: 0;
+        box-shadow: none;
+        flex-direction: column;
+        padding: 1em;
+        height: 380px;
+    }
+
+    .tvContainerStyling{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        margin: 0 auto;
+        height: auto;
+        width: 95%;
+    }
+
+    .tvContainerStyling > h1{
+        max-width: 7em;
+        margin-left: 50%;
+        font-size: 1.05em;
+        display: inline-block;
+        min-height: 2em;
+    }
+
+    .tvContainerStyling > p{
+        margin-top: 13em;
+        min-height: 114px;
+        width: 95%;
+    }
+
+    .tvContainerStyling > h3{
+        max-width: 8em;
+        margin-left: 50%;
+        font-size: 1.05em;
+    }
+
+    img{
+        max-height: 271px;
+        max-width: 154px;
+    }
+
+    .tvScoreStyling{
+        position: absolute;
+        align-self: flex-start;
+        margin-left: auto;
+        border-radius: 0.5em;
+        height: 1em;
+        padding: 0.5em;
+        right: 1em;
+        font-size: 0.90em;
+    }
+
+    .container{
+        padding: 1em;
+        margin: 0.5em 0 0.5em 0;
+        border: none;
+    }
+
+    #choiceDescription{
+        margin-top: 1.5em;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .searchPromptContainer{
+        padding: 0 1em 0 1em;
+    }
+}
