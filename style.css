@@ -1,0 +1,534 @@
+*{
+    margin: 0;
+}
+
+html, body{
+    font-family: "Open Sans", serif;
+}
+
+@font-face{
+    font-family: 'Open Sans', "Open Sans";
+src("assets/OpenSans-Regular.ttf");
+}
+
+.spaceBetween{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alignCenter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.displayRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 1em auto 1em auto;
+}
+
+.displayCenter{
+    margin: auto;
+}
+
+.loadIcon{
+    height: 4em;
+    width: 4em;
+    margin-top: 7em;
+    border-radius: 3em;
+    border: 2px solid;
+    border-color: #FFFFFF #6b7877 #6b7877 #6b7877;
+    animation: loadingAnimation 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+}
+
+.popUp{
+    position: fixed;
+    padding: 1em;
+    box-sizing: border-box;
+    z-index: 3;
+    height: auto;
+    width: 100%;
+    bottom: 0;
+    background-color: #FFFFFF;
+    animation: popUpAnimation 0.50s linear;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.3);
+    display: flex;
+}
+
+.popUp *{
+    animation: displayPopUpContent 1s linear;
+}
+
+.alignFixedCenter{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.infoNav{
+    padding: 1em;
+    background-color: #071338;
+    color: #FFFFFF;
+}
+
+.searchPromptContainer{
+    padding: 3em 10em 3em 10em;
+    font-size: 1.15em;
+    margin: 0;
+}
+
+.displayNone{
+    display: none;
+}
+
+.container{
+    height: auto;
+    max-width: 90em;
+    box-sizing: border-box;
+    padding: 2em 20em 2em 20em;
+    margin: 3em auto 3em auto;
+    border-bottom: 1px solid #6b7877;
+}
+
+.popUpContainer{
+    position: fixed;
+    z-index: 2;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.popUp div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70%;
+    height: 80%;
+    margin-left: 3em;
+}
+
+.popUp .tvScoreStyling{
+    height: 2.1em;
+    align-self: flex-end;
+    border-radius: 0.5em;
+    padding: 0.25em;
+    box-sizing: border-box;
+}
+
+.popUp button{
+    width: 1em;
+    height: 1em;
+    font-size: 2em;
+    background-color: transparent;
+    border: none;
+    align-self: flex-start;
+}
+
+.popUp p {
+    margin-top: 4em;
+}
+
+.popUp button:hover{
+    color: #CD2A49;
+}
+
+.fullWidthContainer{
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.blurElement{
+    filter:blur(4px);
+}
+
+.centerChildren{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#timezone{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.alignTextCenter{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#locationIconContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+#temperature{
+    position: absolute;
+    margin-top: -1.25em;
+    height: auto;
+}
+
+#icons{
+    height: auto;
+    width: auto;
+}
+
+.dataContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+nav{
+    color: black;
+    height: auto;
+    margin-top: 1em;
+}
+
+#searchHeader{
+    font-size: 1.50em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+#timezone{
+    display: flex;
+}
+
+#searchLocationInitial{
+    border:  none;
+    border-bottom: 1px solid #FFFFFF;
+    background-color: transparent;
+    margin: 1em 0 1em 0;
+    height: 1.5em;
+    width: 20em;
+    font-size: 1.25em;
+    color: #FFFFFF;
+    line-height: 4em;
+}
+
+.alignLeftColumn{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#searchLocationInitial:focus{
+    border-bottom: 1px solid #CD2A49;
+    outline: 0;
+}
+
+#error{
+    color: #FFFFFF;
+    position: absolute;
+}
+
+.opacity{
+    background-color: #000000;
+    opacity: 0.6;
+}
+
+.btn{
+    background-color: #cd2a49;
+    border: none;
+    color: #FFFFFF;
+    padding: 0.5em;
+    height: auto;
+    max-width: 13em;
+    border-radius: 0.25em;
+}
+
+#tvRecommendations{
+    margin: auto;
+    width: 60%;
+    max-width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.tvStyling{
+    background-color: white;
+    margin: 1em auto 1em auto;
+    height: auto;
+    width: 40em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,0.3);
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+
+.tvPosterStyling{
+    height: auto;
+    width: auto;
+    margin-right: 2em;
+}
+
+.tvScoreStyling{
+    height: 2em;
+    max-width: 2.5em;
+    padding: 0.50em;
+    border-bottom-left-radius: 1.5em;
+    font-size: 1.25em;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.tvScore7Plus{
+    border: 2px solid #255fff;
+    background-color: #255fff;
+}
+
+.tvScore5-7{
+    border: 2px solid #59802a;
+    background-color: #59802a;
+}
+
+.tvScore4Below{
+    border: 2px solid #ff282f;
+    background-color: #ff282f;
+}
+
+.tvOverviewStyling{
+    margin-top: 3em;
+}
+
+.tvContainerStyling{
+    margin-top: 0.5em;
+}
+
+label span{
+    background-color: transparent;
+    width: auto;
+    height: auto;
+}
+
+.checkboxContainer{
+    width: auto;
+    height: 1em;
+    padding: 0.25em 0.25em 0.25em 0;
+}
+
+input[type=checkbox]{
+    display: none;
+}
+
+label input[type=checkbox]:hover ~ *{
+    border-bottom: 2px solid #CD2A49;
+}
+
+label input[type=checkbox]:checked ~ *{
+    border-bottom: 2px solid #CD2A49;
+}
+
+#choiceDescription{
+    text-align: center;
+}
+
+footer{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@keyframes loadingAnimation {
+    0% {transform: rotate(0deg)}
+    25% {transform: rotate(90deg)}
+    50% {transform: rotate(180deg)}
+    75% {transform: rotate(270deg)}
+    100% {transform: rotate(360deg)}
+}
+
+@keyframes popUpAnimation {
+    0% {height: 0}
+    50% {height: 25%}
+    100% {height: 50%}
+}
+
+@keyframes displayPopUpContent {
+    0% {opacity: 0}
+    75% {opacity: 0.50}
+    100% {opacity: 1}
+}
+
+@media screen and (max-width: 1300px){
+    .container{
+        padding: 2em 5em 2em 5em;
+    }
+
+    #tvRecommendations{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .tvStyling{
+        width: 90%;
+    }
+
+    .popUp{
+        width: 90%;
+        height: 60%;
+    }
+
+    .popUp div{
+        width: 70%;
+        height: 65%;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .searchPromptContainer{
+        padding: 3em 5em 3em 5em;
+    }
+
+    .popUp{
+        width: 100%;
+        height: 90%;
+    }
+
+    .popUp div{
+        height: 30em;
+    }
+
+    .popUp img {
+        margin-top: 1em;
+    }
+
+    .popUp button{
+        position: absolute;
+        align-self: flex-start;
+    }
+}
+
+@media screen and (max-width: 600px){
+    section.spaceBetween.infoNav{
+        padding: 0;
+        height: 10vh;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .searchPromptContainer{
+        padding: 0 3em 0 3em;
+        min-height: 90vh;
+    }
+
+    .btn:nth-of-type(1){
+        align-self: flex-end;
+    }
+
+    .btn:nth-of-type(2){
+        margin-top: 2em;
+        align-self: flex-start;
+    }
+
+    .alignLeftColumn{
+        width: 100%;
+    }
+
+    #searchLocationInitial{
+        width: 100%;
+    }
+
+    .tvStyling{
+        width: 100%;
+        margin: 0;
+        border: none;
+        border-top: 0.025em solid #6b7877;
+        border-radius: 0;
+        box-shadow: none;
+        flex-direction: column;
+        padding: 1em;
+        height: 380px;
+    }
+
+    .tvContainerStyling{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        margin: 0 auto;
+        height: auto;
+        width: 95%;
+    }
+
+    .tvContainerStyling > h1{
+        max-width: 7em;
+        margin-left: 50%;
+        font-size: 1.05em;
+        display: inline-block;
+        min-height: 2em;
+    }
+
+    .tvContainerStyling > p{
+        margin-top: 13em;
+        min-height: 114px;
+        width: 95%;
+    }
+
+    .tvContainerStyling > h3{
+        max-width: 8em;
+        margin-left: 50%;
+        font-size: 1.05em;
+    }
+
+    img{
+        max-height: 271px;
+        max-width: 154px;
+    }
+
+    .tvScoreStyling{
+        position: absolute;
+        align-self: flex-start;
+        margin-left: auto;
+        border-radius: 0.5em;
+        height: 1em;
+        padding: 0.5em;
+        right: 1em;
+        font-size: 0.90em;
+    }
+
+    .container{
+        padding: 1em;
+        margin: 0.5em 0 0.5em 0;
+        border: none;
+    }
+
+    #choiceDescription{
+        margin-top: 1.5em;
+    }
+
+    .popUp{
+        margin: 0;
+        flex-direction: column;
+    }
+
+    .popUp img{
+        margin-top: 2em;
+    }
+
+    .popUp div{
+        margin: 0;
+    }
+
+    .popUp .tvScoreStyling{
+        position: absolute;
+        top: 1em;
+        right: 1em;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .searchPromptContainer{
+        padding: 0 1em 0 1em;
+    }
+}
