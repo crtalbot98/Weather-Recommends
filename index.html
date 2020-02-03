@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="spaceBetween infoNav">
+    <h1>Weather Recommends</h1>
+    <h3>Created by Chandler Talbot</h3>
+</section>
+
+<nav id="userSearchPrompt" class="alignCenter infoNav searchPromptContainer">
+    <div class="alignLeftColumn">
+        <label for="searchLocationInitial" id="searchHeader">Enter Services and Location</label>
+        <div class="displayRow">
+            <div class="checkboxContainer">
+                <label for="netflixCheckBox">
+                    <input type="checkbox" name="netflix" id="netflixCheckBox" value="213">
+                    <span>Netflix</span>
+                </label>
+            </div>
+            <div class="checkboxContainer">
+                <label for="huluCheckBox">
+                    <input type="checkbox" name="hulu" id="huluCheckBox" value="453">
+                    <span>Hulu</span>
+                </label>
+            </div>
+            <div class="checkboxContainer">
+                <label for="amazonCheckBox">
+                    <input type="checkbox" name="amazon" id="amazonCheckBox" value="1024">
+                    <span>Amazon Prime</span>
+                </label>
+            </div>
+        </div>
+        <div>
+            <h4 id="error" class="displayNone"></h4>
+            <input name="searchLocation" id="searchLocationInitial" type="text">
+            <button id="searchLocationButton" class="btn">Search</button>
+        </div>
+        <button id="useCurrentLocation" class="btn">User Current Location</button>
+    </div>
+</nav>
+
+<section id="currentWeather" class="container displayNone notActive">
+    <div id="locationIconContainer">
+    <h2 id="timezone"></h2>
+
+    <div id="iconContainer">
+        <canvas id="icons" width="64" height="64"></canvas>
+        </div>
+    </div>
+
+    <h2 class="alignTextCenter" id="temperature"></h2>
+
+    <div class="dataContainer">
+        <h2>Humidity</h2>
+        <h2 id="humidityVal"></h2>
+    </div>
+
+    <div class="dataContainer">
+        <h2>Wind Speed</h2>
+        <h2 id="windSpeedVal"></h2>
+    </div>
+
+    <p id="choiceDescription"></p>
+</section>
+
+<section id="loadingIcon" class="loadIcon displayCenter displayNone">
+
+</section>
+
+<section id="popUpContainer" class="popUpContainer displayNone fullWidthContainer blurElement">
+</section>
+
+<section id="tvRecommendations">
+
+</section>
+
+<script src="app.js"></script>
+<script src="skycons.js"></script>
+</body>
+</html>

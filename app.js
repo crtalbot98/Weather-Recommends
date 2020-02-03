@@ -184,7 +184,7 @@ getGenreDescription = (icon) => {
         genreID: genreID,
         choiceDescription: choiceDescription
     };
-}
+};
 
 getTvData = (genreID, networkID) => { //Get the related television data from  theMovieDB
     const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=${networkID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
