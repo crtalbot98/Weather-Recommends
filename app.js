@@ -25,11 +25,11 @@ weatherData = (lat, long) => {
             currentWeather(data);
             getTvGenre(icon);
 
-            document.getElementById("error").classList.add("displayNone");
+            document.querySelector("#error").classList.add("displayNone");
         });
 };
 
-currentWeather = (data) => {
+currentWeather = (data) => {//Get weather data and remove decimals
     const temperature = data.currently.temperature.toFixed(0);
     const humidity = data.currently.humidity * 100;
     const fixedHumidity = humidity.toFixed(0);
@@ -189,15 +189,21 @@ getGenreDescription = (icon) => {
 getTvData = (genreID, networkID) => { //Get the related television data from  theMovieDB
     const mUrl = ` https://api.themoviedb.org/3/discover/tv?with_genres=${genreID}&with_networks=${networkID}&api_key=8537640e0fb0b17e1614e53e9322da86`;
     const loadingIcon = document.querySelector("#loadingIcon");
+    const tvRecommendations = document.querySelector("#tvRecommendations");
 
     fetch(mUrl)
         .then(response => {
             return response.json(); //returns json object from the api.
         })
         .then(info => {
-            document.querySelector("#tvRecommendations").innerHTML = '';
+            tvRecommendations.textContent = '';
             loadingIcon.classList.add("displayNone");
             document.querySelector("#currentWeather").classList.remove("displayNone");
+
+            if(info.total_pages === 0){
+                tvRecommendations.textContent = "There is nothing here... please try again."
+            }
+
             displayTvData(info);
         });
 };
@@ -223,12 +229,7 @@ displayTvData = (info) => { //Insert the data returned from theMovieDb into inde
         element.tvOverview.classList.add("tvOverviewStyling");
         element.tvDataContainer.classList.add("tvContainerStyling");
 
-        if(ele.overview.length === 0){
-            element.tvOverview.textContent = 'No overview available';
-        }
-        else{
-            element.tvOverview.textContent = shortenText(ele.overview, 250);
-        }
+        checkStringLength(ele.overview, element.tvOverview);
 
         element.tvPoster.src = 'https://image.tmdb.org/t/p/w154'+ele.poster_path;
         element.tvTitle.textContent = ele.original_name;
@@ -245,7 +246,7 @@ displayTvData = (info) => { //Insert the data returned from theMovieDb into inde
                 setTimeout(function () {
                     if(!opened.check) {
                     opened.check = true;
-                    window.addEventListener('scroll', preventScrolling);
+                    preventScrolling();
                     displayPopUp(ele, opened);
                     }
                 }, 300);
@@ -286,7 +287,7 @@ addDecimalPoint = (ratingNum, scoreContainer) =>{ //Some of the ratings returned
     }
 };
 
-displayPopUp = (ele, opened) => {
+displayPopUp = (ele, opened) => {//Elements for popup
     const popUpEle = {
         popUpContainer: document.createElement("div"),
         popUp: document.createElement("div"),
@@ -304,7 +305,7 @@ displayPopUp = (ele, opened) => {
 
     popUpEle.popUp.classList.add("popUp", "alignFixedCenter", "displayRow");
     popUpEle.popUpScore.classList.add("tvScoreStyling");
-    popUpEle.popUpContainer.classList.add('opacity');
+    popUpEle.popUpContainer.classList.add("opacity", "centerChildren", "popUpContainer", "fullWidthContainer", "alignCenter");
 
     popUpEle.popUpPoster.src = 'https://image.tmdb.org/t/p/w342'+ele.poster_path;
     popUpEle.closeBtn.textContent = 'X';
@@ -314,7 +315,7 @@ displayPopUp = (ele, opened) => {
     popUpEle.popUpOverview.textContent = ele.overview;
     popUpEle.rtLink.textContent = ele.original_name+" on Rotten Tomatoes";
 
-    popUpEle.rtLink.setAttribute('href', "https://www.rottentomatoes.com/tv/"+titleLink);
+    popUpEle.rtLink.setAttribute('href', 'https://www.rottentomatoes.com/tv/'+titleLink);
     popUpEle.rtLink.setAttribute('target', '_blank');
 
     document.body.append(popUpEle.popUpContainer, popUpEle.popUp);
@@ -339,4 +340,13 @@ displayPopUp = (ele, opened) => {
 
 preventScrolling = () => {
     window.scrollTo(window.scrollX, window.scrollY);
+};
+
+checkStringLength = (string, ele) => {
+    if(string.length === 0){
+        ele.textContent = 'No overview available';
+    }
+    else{
+        ele.textContent = shortenText(string, 250);
+    }
 };
