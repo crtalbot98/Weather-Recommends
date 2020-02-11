@@ -50,11 +50,11 @@ src("assets/OpenSans-Regular.ttf");
 
 .popUp{
     position: fixed;
-    padding: 1em;
+    padding: 2em 1em 2em 2em;
     box-sizing: border-box;
     z-index: 3;
     height: auto;
-    width: 100%;
+    width: 50%;
     bottom: 0;
     background-color: #FFFFFF;
     animation: popUpAnimation 0.50s linear;
@@ -64,6 +64,12 @@ src("assets/OpenSans-Regular.ttf");
 
 .popUp *{
     animation: displayPopUpContent 1s linear;
+}
+
+.popUp a{
+    text-decoration: none;
+    color: #000000;
+    margin-top: 6em;
 }
 
 .alignFixedCenter{
@@ -276,10 +282,10 @@ nav{
 }
 
 .tvScoreStyling{
-    height: 2em;
+    height: 1.5em;
     max-width: 2.5em;
     padding: 0.50em;
-    border-bottom-left-radius: 1.5em;
+    border-bottom-left-radius: 1.75em;
     font-size: 1.25em;
     text-align: center;
     color: #FFFFFF;
@@ -306,6 +312,7 @@ nav{
 
 .tvContainerStyling{
     margin-top: 0.5em;
+    min-width: 405px;
 }
 
 label span{
@@ -394,6 +401,7 @@ footer{
     .popUp{
         width: 100%;
         height: 90%;
+        padding: 1em;
     }
 
     .popUp div{
@@ -407,6 +415,10 @@ footer{
     .popUp button{
         position: absolute;
         align-self: flex-start;
+    }
+
+    .tvContainerStyling{
+        min-width: auto;
     }
 }
 
