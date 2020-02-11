@@ -332,19 +332,28 @@ displayPopUp = (ele, opened) => {//Elements for popup
 
     document.querySelector(".popUp button").addEventListener("click", function(){ //hides and removes content from popup
         opened.check = false;
+        allowScrolling();
         document.body.removeChild(popUpEle.popUpContainer);
         document.body.removeChild(popUpEle.popUp);
-        window.removeEventListener('scroll', preventScrolling)
     });
 };
 
-preventScrolling = () => {
-    window.scrollTo(window.scrollX, window.scrollY);
+preventScrolling = () => { //Prevent scrolling
+    const x = window.pageXOffset;
+    const y = window.pageYOffset;
+
+    window.onscroll = function() {
+        window.scrollTo(x, y);
+    };
 };
 
-checkStringLength = (string, ele) => {
+allowScrolling = () => {//Allow scrolling
+    window.onscroll = function() {};
+};
+
+checkStringLength = (string, ele) => {//Check the length of a string
     if(string.length === 0){
-        ele.textContent = 'No overview available';
+        ele.textContent = 'No content available';
     }
     else{
         ele.textContent = shortenText(string, 250);

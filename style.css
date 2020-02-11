@@ -529,13 +529,19 @@ footer{
     }
 
     .popUp div{
-        margin: 0;
+        width: 90%;
+        margin: 2em 0 0 0;
+    }
+
+    .popUp a {
+        margin-top: 2em;
     }
 
     .popUp .tvScoreStyling{
         position: absolute;
         top: 1em;
         right: 1em;
+        margin: 0;
     }
 }
 
